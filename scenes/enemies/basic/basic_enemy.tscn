@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bke42ss266g4p"]
+
+[ext_resource type="Texture2D" uid="uid://cbxbxld3dd27" path="res://assets/Tanks/tankRed_outline.png" id="1_2184v"]
+[ext_resource type="Script" uid="uid://dpcj7br5i01hg" path="res://scenes/enemies/basic/basic_enemy.gd" id="1_cdc21"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2184v"]
+size = Vector2(74, 70)
+
+[node name="BasicEnemy" type="CharacterBody2D" unique_id=1028931331]
+script = ExtResource("1_cdc21")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=428788154]
+texture = ExtResource("1_2184v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=337034293]
+shape = SubResource("RectangleShape2D_2184v")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=224676136]

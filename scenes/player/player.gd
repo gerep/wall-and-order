@@ -2,8 +2,11 @@ extends CharacterBody2D
 class_name Player
 
 const SPRITE_SIZE:int = 64
+
 const BRICK_WALL: Vector2i = Vector2i(1, 0)
 const STONE_WALL: Vector2i = Vector2i(2, 0)
+
+const NUM_PLACEMENTS_BEFORE_STONE: int = 4
 
 @export var speed: float = 400.0
 @export var acceleration: float = 1000.0
@@ -15,6 +18,8 @@ const STONE_WALL: Vector2i = Vector2i(2, 0)
 
 var input_direction: Vector2
 var last_direction: Vector2
+var placement_count: int
+var current_wall: Vector2i = BRICK_WALL
 
 
 func _physics_process(delta: float) -> void:
@@ -26,8 +31,23 @@ func _physics_process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"place"):
+		placement_count += 1
+		current_wall = BRICK_WALL
+
+		if placement_count == NUM_PLACEMENTS_BEFORE_STONE:
+			placement_count = 0
+			current_wall = STONE_WALL
+
+		# Grab the cell behind the player based on the last direction the player is facing.
 		var cell_position = position - (last_direction*SPRITE_SIZE)
-		tilemap_layer.set_cell(tilemap_layer.local_to_map(cell_position), 1, BRICK_WALL)
+		var map_coord = tilemap_layer.local_to_map(cell_position)
+
+		# If the tilemap cell is already with a wall, ignore the placement.
+		if tilemap_layer.get_cell_atlas_coords(map_coord) != Vector2i.ZERO:
+			placement_count -= 1
+			return
+
+		tilemap_layer.set_cell(map_coord, 1, current_wall)
 
 
 func _handle_movement(delta: float) -> void:

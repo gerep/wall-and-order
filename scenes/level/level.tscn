@@ -4,17 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://4x4xbhn2v7xd" path="res://assets/tileset.png" id="1_nbgty"]
 [ext_resource type="PackedScene" uid="uid://by0u4fiidlly7" path="res://scenes/player/player.tscn" id="4_qkmgm"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_nbgty"]
-vertices = PackedVector2Array(32, 32, -32, 32, -32, -32, 32, -32)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_i166f"]
+vertices = PackedVector2Array(28.632813, -28.632813, 32, -18.523438, 32, 18.523438, 28.632813, 28.632813, 21.898438, 32, -18.523438, 32, -28.632813, 28.632813, -32, 21.898438, -32, -21.898438, -28.632813, -28.632813, -21.898438, -32, 18.523438, -32)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-28.631578, -28.631578, -21.894737, -32, 18.526318, -32, 28.63158, -28.631578, 32, -18.526316, 32, 18.526318, 28.63158, 28.63158, 21.894737, 32, -18.526316, 32, -28.631578, 28.63158, -32, 21.894737, -32, -21.894737)])
 agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i166f"]
 texture = ExtResource("1_nbgty")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
-0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_nbgty")
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_i166f")
 1:0/0 = 0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 2:0/0 = 0
@@ -41,4 +41,5 @@ tilemap_layer = NodePath("../GroundLayer")
 position = Vector2(598, 582)
 
 [node name="EnemySpawnTimer" type="Timer" parent="." unique_id=1393664805]
+wait_time = 10.0
 autostart = true

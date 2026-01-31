@@ -11,7 +11,8 @@ var screen_width: float
 func _ready() -> void:
 	var asd = get_viewport_rect()
 	screen_width = asd.size.x
-	enemy_spawn_timer.timeout.connect(_spawn_enemy)
+	#enemy_spawn_timer.timeout.connect(_spawn_enemy)
+	_spawn_enemy()
 
 
 func _spawn_enemy() -> void:

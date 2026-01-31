@@ -5,7 +5,7 @@ extends CharacterBody2D
 
 @export var target: Vector2
 @export var speed: float = 100.0
-@export var acceleration: float = 50.0
+@export var acceleration: float = 500.0
 @export var friction: float = 2000.0
 
 
@@ -14,8 +14,10 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	var target_position: Vector2 = navigation_agent_2d.get_next_path_position()
+	if navigation_agent_2d.is_navigation_finished():
+		return
 
+	var target_position: Vector2 = navigation_agent_2d.get_next_path_position()
 	var direction = target_position - position
 
 	var target_rotation = direction.angle() + PI / 2

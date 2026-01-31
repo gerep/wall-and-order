@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dpcj7br5i01hg" path="res://scenes/enemies/basic/basic_enemy.gd" id="1_cdc21"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2184v"]
-size = Vector2(74, 70)
+size = Vector2(43, 66)
 
 [node name="BasicEnemy" type="CharacterBody2D" unique_id=1028931331]
 script = ExtResource("1_cdc21")
@@ -13,6 +13,11 @@ script = ExtResource("1_cdc21")
 texture = ExtResource("1_2184v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=337034293]
+position = Vector2(-0.5, -2)
 shape = SubResource("RectangleShape2D_2184v")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=224676136]
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 30.0
+debug_enabled = true

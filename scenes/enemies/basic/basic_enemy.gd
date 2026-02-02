@@ -26,7 +26,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if navigation_agent_2d.is_navigation_finished() || not can_move:
+	if navigation_agent_2d.is_navigation_finished():
 		return
 
 	if ray_cast_2d.is_colliding():

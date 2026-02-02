@@ -2,7 +2,7 @@ extends Area2D
 
 var target_position: Vector2
 var tile_coordinate: Vector2i
-var speed: int = 30
+var speed: int = 300
 
 
 func _ready() -> void:

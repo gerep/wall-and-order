@@ -8,6 +8,7 @@ size = Vector2(43, 66)
 
 [node name="BasicEnemy" type="CharacterBody2D" unique_id=1028931331]
 script = ExtResource("1_cdc21")
+speed = 100.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=428788154]
 texture = ExtResource("1_2184v")
@@ -17,6 +18,7 @@ position = Vector2(-0.5, -2)
 shape = SubResource("RectangleShape2D_2184v")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=224676136]
+target_desired_distance = 100.0
 path_postprocessing = 1
 avoidance_enabled = true
 radius = 30.0

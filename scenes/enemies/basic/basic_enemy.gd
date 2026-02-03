@@ -5,11 +5,9 @@ extends CharacterBody2D
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var shooting_timer: Timer = $ShootingTimer
+@onready var move_timer: Timer = $MoveTimer
 
 @export var target: Vector2
-@export var speed: float = 50.0
-@export var acceleration: float = 500.0
-@export var friction: float = 2000.0
 @export var tilemap_layer: TileMapLayer
 
 const BRICK_WALL: Vector2i = Vector2i(1, 0)
@@ -18,16 +16,19 @@ const BULLET = preload("uid://pxhsie8ss6aa")
 
 var can_shoot: bool = true
 var can_move: bool = true
+var speed: float = 50.0
 
 
 func _ready() -> void:
 	navigation_agent_2d.target_position = target
 	shooting_timer.timeout.connect(_on_shotting_timer_timeout)
-
+	move_timer.timeout.connect(_on_move_timer_timeout)
 
 func _physics_process(delta: float) -> void:
+	if not can_move:
+		return
+
 	if navigation_agent_2d.is_navigation_finished():
-		print("enemy got there")
 		return
 
 	if ray_cast_2d.is_colliding():
@@ -38,6 +39,7 @@ func _physics_process(delta: float) -> void:
 					can_shoot = false
 					can_move = false
 					shooting_timer.start()
+					move_timer.start()
 
 					var bullet_scene = BULLET.instantiate()
 					bullet_scene.position = position
@@ -58,11 +60,15 @@ func _physics_process(delta: float) -> void:
 	collision_shape_2d.rotation = rotation_value
 	ray_cast_2d.rotation = rotation_value
 
-	velocity = velocity.move_toward(direction.normalized() * speed, acceleration * delta)
+	#velocity = velocity.move_toward(direction.normalized() * speed, acceleration * delta)
+	velocity = direction.normalized() * speed
 
 	move_and_slide()
 
 
 func _on_shotting_timer_timeout() -> void:
 	can_shoot = true
+
+
+func _on_move_timer_timeout() -> void:
 	can_move = true

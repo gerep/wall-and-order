@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bg402yve2oxks"]
+
+[ext_resource type="Texture2D" uid="uid://bjjmt6yhnhhl0" path="res://assets/Environment/treeLarge.png" id="1_3s5rv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rfma5"]
+radius = 60.033325
+
+[node name="Eagle" type="Area2D" unique_id=1686697668]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1379111318]
+shape = SubResource("CircleShape2D_rfma5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1825004383]
+texture = ExtResource("1_3s5rv")

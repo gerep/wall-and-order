@@ -8,7 +8,6 @@ size = Vector2(43, 66)
 
 [node name="BasicEnemy" type="CharacterBody2D" unique_id=1028931331]
 script = ExtResource("1_cdc21")
-speed = 100.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=428788154]
 texture = ExtResource("1_2184v")
@@ -30,3 +29,6 @@ collision_mask = 2
 
 [node name="ShootingTimer" type="Timer" parent="." unique_id=1873695740]
 wait_time = 5.0
+
+[node name="MoveTimer" type="Timer" parent="." unique_id=27701256]
+wait_time = 0.5

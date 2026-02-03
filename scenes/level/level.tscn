@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ccgirbkhk3lno" path="res://scenes/level/level.gd" id="1_i166f"]
 [ext_resource type="Texture2D" uid="uid://4x4xbhn2v7xd" path="res://assets/tileset.png" id="1_nbgty"]
+[ext_resource type="PackedScene" uid="uid://bg402yve2oxks" path="res://scenes/eagle/eagle.tscn" id="4_hnne4"]
 [ext_resource type="PackedScene" uid="uid://by0u4fiidlly7" path="res://scenes/player/player.tscn" id="4_qkmgm"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_i166f"]
@@ -41,9 +42,9 @@ tile_set = SubResource("TileSet_m0bv2")
 position = Vector2(449, 104)
 tilemap_layer = NodePath("../GroundLayer")
 
-[node name="Target" type="Marker2D" parent="." unique_id=461482028]
-position = Vector2(598, 582)
-
 [node name="EnemySpawnTimer" type="Timer" parent="." unique_id=1393664805]
 wait_time = 10.0
 autostart = true
+
+[node name="Eagle" parent="." unique_id=1686697668 instance=ExtResource("4_hnne4")]
+position = Vector2(795, 561)

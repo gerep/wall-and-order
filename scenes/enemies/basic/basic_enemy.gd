@@ -16,7 +16,7 @@ const BULLET = preload("uid://pxhsie8ss6aa")
 
 var can_shoot: bool = true
 var can_move: bool = true
-var speed: float = 50.0
+var speed: float = 20.0
 
 
 func _ready() -> void:
@@ -24,11 +24,13 @@ func _ready() -> void:
 	shooting_timer.timeout.connect(_on_shotting_timer_timeout)
 	move_timer.timeout.connect(_on_move_timer_timeout)
 
+
 func _physics_process(delta: float) -> void:
 	if not can_move:
 		return
 
 	if navigation_agent_2d.is_navigation_finished():
+		GameManager.game_ended.emit()
 		return
 
 	if ray_cast_2d.is_colliding():

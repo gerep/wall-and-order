@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://shib50xm7qie"]
+
+[ext_resource type="Script" uid="uid://dyfmgstcqjlwf" path="res://scenes/ui/gameover.gd" id="1_xg0lb"]
+
+[node name="Gameover" type="CanvasLayer" unique_id=61900772]
+script = ExtResource("1_xg0lb")
+
+[node name="Control" type="Control" parent="." unique_id=1471247553]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Control" unique_id=1558018747]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/CenterContainer" unique_id=1864609257]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/CenterContainer/VBoxContainer" unique_id=533122104]
+layout_mode = 2
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TryAgainButton" type="Button" parent="Control/CenterContainer/VBoxContainer" unique_id=1158298571]
+unique_name_in_owner = true
+layout_mode = 2
+text = "TRY AGAIN"
+
+[node name="BackToMenu" type="Button" parent="Control/CenterContainer/VBoxContainer" unique_id=390628901]
+unique_name_in_owner = true
+layout_mode = 2
+text = "BACK TO MENU"

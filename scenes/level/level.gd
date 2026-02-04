@@ -11,12 +11,13 @@ var screen_width: float
 
 
 func _ready() -> void:
-	var asd = get_viewport_rect()
-	screen_width = asd.size.x
+	var viewport = get_viewport_rect()
+	screen_width = viewport.size.x
 	#enemy_spawn_timer.timeout.connect(_spawn_enemy)
 	_spawn_enemy()
 
 	GameManager.tile_destroyed.connect(_on_tile_destroyed)
+	GameManager.game_ended.connect(_on_game_ended)
 
 
 func _on_tile_destroyed(pos: Vector2i) -> void:
@@ -30,3 +31,8 @@ func _spawn_enemy() -> void:
 	enemy.tilemap_layer = ground_layer
 	add_child(enemy)
 	enemy.position = Vector2(spawn_position, -50.0)
+
+
+func _on_game_ended() -> void:
+	var game_over_menu = GameManager.GAME_OVER_MENU.instantiate()
+	add_child(game_over_menu)

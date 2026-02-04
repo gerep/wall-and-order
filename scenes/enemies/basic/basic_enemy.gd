@@ -16,7 +16,7 @@ const BULLET = preload("uid://pxhsie8ss6aa")
 
 var can_shoot: bool = true
 var can_move: bool = true
-var speed: float = 20.0
+var speed: float = 200.0
 
 
 func _ready() -> void:

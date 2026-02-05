@@ -34,5 +34,4 @@ func _spawn_enemy() -> void:
 
 
 func _on_game_ended() -> void:
-	var game_over_menu = GameManager.GAME_OVER_MENU.instantiate()
-	add_child(game_over_menu)
+	GameManager.go_to_gameover_menu()

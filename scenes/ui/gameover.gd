@@ -11,8 +11,8 @@ func _ready() -> void:
 
 
 func _on_try_again_pressed() -> void:
-	print("try again")
+	GameManager.go_to_level()
 
 
 func _on_back_to_menu_pressed() -> void:
-	print("Back to menu")
+	GameManager.go_to_main_menu()

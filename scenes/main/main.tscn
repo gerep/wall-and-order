@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://30pdvociwc8t"]
 
+[ext_resource type="Script" uid="uid://b2yatjos5oy2p" path="res://scenes/main/main.gd" id="1_hyk8p"]
+
 [node name="Main" type="Node2D" unique_id=100478868]
+script = ExtResource("1_hyk8p")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=274632602]
 
@@ -28,5 +31,6 @@ layout_mode = 2
 text = "WALL & ORDER"
 
 [node name="PlayButton" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer" unique_id=445286266]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Play"

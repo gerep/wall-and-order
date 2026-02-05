@@ -1,6 +1,16 @@
 extends Node2D
 
-const GAME_OVER_MENU = preload("uid://shib50xm7qie")
-
 signal tile_destroyed(pos: Vector2i)
 signal game_ended
+
+
+func go_to_gameover_menu() -> void:
+	get_tree().change_scene_to_file("res://scenes/ui/gameover.tscn")
+
+
+func go_to_level() -> void:
+	get_tree().change_scene_to_file("res://scenes/level/level.tscn")
+
+
+func go_to_main_menu() -> void:
+	get_tree().change_scene_to_file("res://scenes/main/main.tscn")

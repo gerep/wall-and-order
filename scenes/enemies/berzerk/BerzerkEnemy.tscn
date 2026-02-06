@@ -1,3 +1,34 @@
 [gd_scene format=3 uid="uid://dq74ubiaq3rmg"]
 
-[node name="BerzerkEnemy" type="Node2D" unique_id=1884010328]
+[ext_resource type="Texture2D" uid="uid://cbxbxld3dd27" path="res://assets/Tanks/tankRed_outline.png" id="1_g0ln3"]
+[ext_resource type="Script" uid="uid://bmg3c7w0q7el5" path="res://scenes/enemies/berzerk/berzerk_enemy.gd" id="1_jfqd1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jfqd1"]
+size = Vector2(43, 66)
+
+[node name="BerzerkEnemy" type="CharacterBody2D" unique_id=536256464]
+script = ExtResource("1_jfqd1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=522509165]
+texture = ExtResource("1_g0ln3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=241534048]
+position = Vector2(-0.5, -2)
+shape = SubResource("RectangleShape2D_jfqd1")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=312809869]
+target_desired_distance = 100.0
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 30.0
+debug_enabled = true
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=147770314]
+target_position = Vector2(0, -180)
+collision_mask = 2
+
+[node name="ShootingTimer" type="Timer" parent="." unique_id=13609428]
+wait_time = 5.0
+
+[node name="MoveTimer" type="Timer" parent="." unique_id=1104301945]
+wait_time = 0.5

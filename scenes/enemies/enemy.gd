@@ -10,7 +10,7 @@ class_name Enemy
 
 @export var target: Vector2
 @export var tilemap_layer: TileMapLayer
-@export var speed: float = 200.0
+@export var speed: float = 2.0
 
 const BRICK_WALL: Vector2i = Vector2i(1, 0)
 const STONE_WALL: Vector2i = Vector2i(2, 0)

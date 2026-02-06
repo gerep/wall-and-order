@@ -15,11 +15,16 @@ const NUM_PLACEMENTS_BEFORE_STONE: int = 4
 @export var tilemap_layer: TileMapLayer
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var next_wall: Sprite2D = $NextWall
 
 var input_direction: Vector2
 var last_direction: Vector2
-var placement_count: int
-var current_wall: Vector2i = BRICK_WALL
+var placement_count: int = -1
+var wall_sequence: Array = [BRICK_WALL, BRICK_WALL, STONE_WALL]
+
+
+func _ready() -> void:
+	next_wall.frame_coords = wall_sequence[0]
 
 
 func _physics_process(delta: float) -> void:
@@ -31,12 +36,10 @@ func _physics_process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"place"):
-		placement_count += 1
-		current_wall = BRICK_WALL
-
-		if placement_count == NUM_PLACEMENTS_BEFORE_STONE:
-			placement_count = 0
-			current_wall = STONE_WALL
+		placement_count = wrapi(placement_count + 1, 0, wall_sequence.size())
+		var current_wall: Vector2i = wall_sequence[placement_count]
+		var next_index = wrapi(placement_count + 1, 0, wall_sequence.size())
+		next_wall.frame_coords = wall_sequence[next_index]
 
 		# Grab the cell behind the player based on the last direction the player is facing.
 		var cell_position = position - (last_direction*SPRITE_SIZE)

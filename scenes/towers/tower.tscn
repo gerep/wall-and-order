@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://ckod6a185q6fh"]
+
+[ext_resource type="Texture2D" uid="uid://5fyyrlpmn1sp" path="res://assets/Environment/treeSmall.png" id="1_by3tn"]
+[ext_resource type="Script" uid="uid://byttcunhpgn7x" path="res://scenes/towers/tower.gd" id="1_g767u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g767u"]
+radius = 45.01111
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vfpy0"]
+radius = 226.00221
+
+[node name="Tower" type="StaticBody2D" unique_id=1628834733]
+script = ExtResource("1_g767u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2066910579]
+visible = false
+shape = SubResource("CircleShape2D_g767u")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=975972842]
+texture = ExtResource("1_by3tn")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=634706983]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=293955378]
+shape = SubResource("CircleShape2D_vfpy0")

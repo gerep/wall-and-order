@@ -1,6 +1,0 @@
-extends Enemy
-
-
-func _ready() -> void:
-	super._ready()
-	target_wall = BRICK_WALL

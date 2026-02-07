@@ -4,8 +4,9 @@ extends Node2D
 @onready var ground_layer: TileMapLayer = $GroundLayer
 @onready var eagle: Area2D = $Eagle
 
-const BASIC_ENEMY = preload("uid://bke42ss266g4p")
 const WALKABLE_TILE: Vector2i = Vector2i(0, 0)
+
+const enemies: Array = [preload("uid://drgu2o61e8iki"), preload("uid://cjxa2ahc3d6py")]
 
 var screen_width: float
 
@@ -13,7 +14,7 @@ var screen_width: float
 func _ready() -> void:
 	var viewport = get_viewport_rect()
 	screen_width = viewport.size.x
-	#enemy_spawn_timer.timeout.connect(_spawn_enemy)
+	enemy_spawn_timer.timeout.connect(_spawn_enemy)
 	_spawn_enemy()
 
 	GameManager.tile_destroyed.connect(_on_tile_destroyed)
@@ -26,7 +27,7 @@ func _on_tile_destroyed(pos: Vector2i) -> void:
 
 func _spawn_enemy() -> void:
 	var spawn_position: float = randf_range(10.0, screen_width - 10)
-	var enemy = BASIC_ENEMY.instantiate()
+	var enemy = enemies.pick_random().instantiate()
 	enemy.target = eagle.position
 	enemy.tilemap_layer = ground_layer
 	add_child(enemy)

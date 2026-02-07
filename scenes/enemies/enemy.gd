@@ -9,17 +9,23 @@ class_name Enemy
 @onready var move_timer: Timer = $MoveTimer
 @onready var cannon: Sprite2D = $Cannon
 
-@export var target: Vector2
 @export var tilemap_layer: TileMapLayer
 @export var speed: float = 2.0
+@export var wall_type: WallType = WallType.BRICK
 
 const BRICK_WALL: Vector2i = Vector2i(1, 0)
 const STONE_WALL: Vector2i = Vector2i(2, 0)
-
-var target_wall: Vector2i = BRICK_WALL
-
 const BULLET = preload("uid://pxhsie8ss6aa")
 
+enum WallType {BRICK, STONE}
+
+var target_wall: Vector2i:
+	get:
+		match wall_type:
+			WallType.STONE: return STONE_WALL
+			_: return BRICK_WALL
+
+var target: Vector2
 var can_shoot: bool = true
 var can_move: bool = true
 

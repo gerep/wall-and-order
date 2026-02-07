@@ -9,22 +9,34 @@ class_name Enemy
 @onready var move_timer: Timer = $MoveTimer
 @onready var cannon: Sprite2D = $Cannon
 
-@export var tilemap_layer: TileMapLayer
 @export var speed: float = 2.0
 @export var wall_type: WallType = WallType.BRICK
 
 const BRICK_WALL: Vector2i = Vector2i(1, 0)
 const STONE_WALL: Vector2i = Vector2i(2, 0)
-const BULLET = preload("uid://pxhsie8ss6aa")
+const BULLET_SCENE: PackedScene = preload("uid://pxhsie8ss6aa")
+const STONE_BULLET_TEXTURE: Texture2D = preload("uid://bngspxlsejr8b")
+const BRICK_BULLET_TEXTURE: Texture2D = preload("uid://rcxavrj58p67")
 
-enum WallType {BRICK, STONE}
+enum WallType { BRICK, STONE }
 
 var target_wall: Vector2i:
 	get:
 		match wall_type:
-			WallType.STONE: return STONE_WALL
-			_: return BRICK_WALL
+			WallType.STONE:
+				return STONE_WALL
+			_:
+				return BRICK_WALL
 
+var bullet_texture: Texture2D:
+	get:
+		match wall_type:
+			WallType.STONE:
+				return STONE_BULLET_TEXTURE
+			_:
+				return BRICK_BULLET_TEXTURE
+
+var tilemap_layer: TileMapLayer
 var target: Vector2
 var can_shoot: bool = true
 var can_move: bool = true
@@ -54,14 +66,14 @@ func _physics_process(delta: float) -> void:
 					shooting_timer.start()
 					move_timer.start()
 
-					var bullet_scene = BULLET.instantiate()
+					var bullet_scene = BULLET_SCENE.instantiate()
+					bullet_scene.texture = bullet_texture
 					bullet_scene.position = position
 					bullet_scene.target_position = ray_cast_2d.get_collision_point()
 					bullet_scene.tile_coordinate = map_coord
 					bullet_scene.rotation = ray_cast_2d.rotation
 
 					get_parent().add_child(bullet_scene)
-
 
 	var target_position: Vector2 = navigation_agent_2d.get_next_path_position()
 	var direction = target_position - position

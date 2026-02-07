@@ -3,8 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://cbxbxld3dd27" path="res://assets/Tanks/tankRed_outline.png" id="1_g0ln3"]
 [ext_resource type="Script" uid="uid://bmg3c7w0q7el5" path="res://scenes/enemies/berzerk/berzerk_enemy.gd" id="1_jfqd1"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jfqd1"]
-size = Vector2(43, 66)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jfqd1"]
+radius = 17.5
+height = 74.0
 
 [node name="BerzerkEnemy" type="CharacterBody2D" unique_id=536256464]
 script = ExtResource("1_jfqd1")
@@ -14,7 +15,7 @@ texture = ExtResource("1_g0ln3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=241534048]
 position = Vector2(-0.5, -2)
-shape = SubResource("RectangleShape2D_jfqd1")
+shape = SubResource("CapsuleShape2D_jfqd1")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=312809869]
 target_desired_distance = 100.0

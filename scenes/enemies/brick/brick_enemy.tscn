@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://befap2be83oa3" path="res://assets/Tanks/barrelRed_outline.png" id="2_jy2d8"]
 
 [node name="BrickEnemy" unique_id=1028931331 instance=ExtResource("1_6bpvv")]
-speed = 10.0
+speed = 30.0
 
 [node name="Cannon" parent="." index="6" unique_id=257077008]
 texture = ExtResource("2_jy2d8")

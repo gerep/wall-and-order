@@ -10,16 +10,24 @@ radius = 45.01111
 radius = 226.00221
 
 [node name="Tower" type="StaticBody2D" unique_id=1628834733]
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("1_g767u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2066910579]
-visible = false
 shape = SubResource("CircleShape2D_g767u")
+disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=975972842]
 texture = ExtResource("1_by3tn")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=634706983]
+collision_layer = 4
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=293955378]
+position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_vfpy0")
+
+[node name="ShootingTimer" type="Timer" parent="." unique_id=1914182226]
+autostart = true

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://pxhsie8ss6aa"]
+
+[ext_resource type="Script" uid="uid://627sl8rrv3i" path="res://scenes/enemies/bullet/tank_bullet.gd" id="1_bcpt0"]
+[ext_resource type="Texture2D" uid="uid://rcxavrj58p67" path="res://assets/Bullets/bulletRed_outline.png" id="2_7uc7t"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b52me"]
+radius = 7.0
+
+[node name="TankBullet" type="Area2D" unique_id=1513410200]
+collision_layer = 24
+collision_mask = 24
+script = ExtResource("1_bcpt0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1082420877]
+texture = ExtResource("2_7uc7t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1363467289]
+shape = SubResource("CapsuleShape2D_b52me")

@@ -1,5 +1,5 @@
 extends Area2D
-class_name Bullet
+class_name TankBullet
 
 @onready var sprite: Sprite2D = $Sprite2D
 

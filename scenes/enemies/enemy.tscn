@@ -9,6 +9,7 @@ radius = 16.5
 height = 68.0
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1028931331]
+collision_layer = 5
 script = ExtResource("1_38ino")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=428788154]
@@ -26,7 +27,7 @@ debug_enabled = true
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=732374594]
 target_position = Vector2(0, -180)
-collision_mask = 2
+collision_mask = 24
 
 [node name="ShootingTimer" type="Timer" parent="." unique_id=1873695740]
 wait_time = 5.0

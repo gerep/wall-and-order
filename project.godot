@@ -59,6 +59,14 @@ place={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="WORLD"
+2d_physics/layer_2="PLAYER"
+2d_physics/layer_3="ENEMY"
+2d_physics/layer_4="STONE_WALL"
+2d_physics/layer_5="BRICK_WALL"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

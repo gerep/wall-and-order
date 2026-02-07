@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cbxbxld3dd27" path="res://assets/Tanks/tankRed_outline.png" id="1_2184v"]
 [ext_resource type="Script" uid="uid://dpcj7br5i01hg" path="res://scenes/enemies/basic/basic_enemy.gd" id="1_cdc21"]
+[ext_resource type="Texture2D" uid="uid://cd5fmao6wtlw0" path="res://assets/Tanks/barrelBeige_outline.png" id="3_r4vp2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cdc21"]
 radius = 16.5
@@ -9,12 +10,12 @@ height = 68.0
 
 [node name="BasicEnemy" type="CharacterBody2D" unique_id=1028931331]
 script = ExtResource("1_cdc21")
+speed = 50.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=428788154]
 texture = ExtResource("1_2184v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=337034293]
-position = Vector2(-0.5, -2)
 shape = SubResource("CapsuleShape2D_cdc21")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=224676136]
@@ -33,3 +34,8 @@ wait_time = 5.0
 
 [node name="MoveTimer" type="Timer" parent="." unique_id=27701256]
 wait_time = 0.5
+
+[node name="Cannon" type="Sprite2D" parent="." unique_id=257077008]
+position = Vector2(0, 1)
+texture = ExtResource("3_r4vp2")
+offset = Vector2(0, -30)

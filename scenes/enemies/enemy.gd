@@ -7,6 +7,7 @@ class_name Enemy
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var shooting_timer: Timer = $ShootingTimer
 @onready var move_timer: Timer = $MoveTimer
+@onready var cannon: Sprite2D = $Cannon
 
 @export var target: Vector2
 @export var tilemap_layer: TileMapLayer
@@ -64,9 +65,9 @@ func _physics_process(delta: float) -> void:
 	var rotation_value = lerp_angle(sprite_2d.rotation, target_rotation, 10 * delta)
 	sprite_2d.rotation = rotation_value
 	collision_shape_2d.rotation = rotation_value
+	cannon.rotation = rotation_value
 	ray_cast_2d.rotation = rotation_value
 
-	#velocity = velocity.move_toward(direction.normalized() * speed, acceleration * delta)
 	velocity = direction.normalized() * speed
 
 	move_and_slide()

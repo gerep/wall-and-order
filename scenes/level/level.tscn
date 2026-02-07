@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://4x4xbhn2v7xd" path="res://assets/tileset.png" id="1_nbgty"]
 [ext_resource type="PackedScene" uid="uid://bg402yve2oxks" path="res://scenes/eagle/eagle.tscn" id="4_hnne4"]
 [ext_resource type="PackedScene" uid="uid://by0u4fiidlly7" path="res://scenes/player/player.tscn" id="4_qkmgm"]
-[ext_resource type="PackedScene" uid="uid://ckod6a185q6fh" path="res://scenes/towers/tower.tscn" id="5_hnne4"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_i166f"]
 vertices = PackedVector2Array(28.632813, -28.632813, 32, -18.523438, 32, 18.523438, 28.632813, 28.632813, 21.898438, 32, -18.523438, 32, -28.632813, 28.632813, -32, 21.898438, -32, -21.898438, -28.632813, -28.632813, -21.898438, -32, 18.523438, -32)
@@ -48,6 +47,3 @@ autostart = true
 
 [node name="Eagle" parent="." unique_id=1686697668 instance=ExtResource("4_hnne4")]
 position = Vector2(795, 561)
-
-[node name="Tower" parent="." unique_id=1628834733 instance=ExtResource("5_hnne4")]
-position = Vector2(935, 283)

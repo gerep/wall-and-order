@@ -1,6 +1,8 @@
 extends Area2D
 class_name TowerBullet
 
+@onready var sprite: Sprite2D = $Sprite2D
+
 var target_position: Vector2
 var speed: int = 300
 var direction: Vector2
@@ -24,4 +26,6 @@ func _process(delta: float) -> void:
 
 	if direction == Vector2.ZERO:
 		direction = (target_position - position).normalized()
+
+	sprite.rotation = direction.angle()
 	position += direction * speed * delta

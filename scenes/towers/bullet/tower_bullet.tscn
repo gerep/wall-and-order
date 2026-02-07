@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cdehvy2bjtwke" path="res://assets/Bullets/bulletYellowSilver_outline.png" id="2_acko5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b52me"]
-radius = 7.0
+radius = 8.0
 
 [node name="TowerBullet" type="Area2D" unique_id=1513410200]
 collision_layer = 4
@@ -15,4 +15,5 @@ script = ExtResource("1_ns2b0")
 texture = ExtResource("2_acko5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1363467289]
+rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_b52me")

@@ -36,6 +36,7 @@ var bullet_texture: Texture2D:
 			_:
 				return BRICK_BULLET_TEXTURE
 
+var life_points: int = 1
 var tilemap_layer: TileMapLayer
 var target: Vector2
 var can_shoot: bool = true

@@ -14,7 +14,9 @@ func _ready() -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	body.queue_free()
+	if body.has_method(&"take_damage"):
+		body.take_damage()
+
 	queue_free()
 
 

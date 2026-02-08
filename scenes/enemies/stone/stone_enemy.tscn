@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://d0utljaj74wjd" path="res://assets/Tanks/tankBeige_outline.png" id="2_khdt3"]
 
 [node name="StoneEnemy" unique_id=1028931331 instance=ExtResource("1_w5dt5")]
-speed = 30.0
 wall_type = 1
 
 [node name="Sprite2D" parent="." index="0" unique_id=428788154]

@@ -14,7 +14,9 @@ func _ready() -> void:
 	sprite.texture = texture
 
 
-func _on_body_entered(_body: Node2D) -> void:
+func _on_body_entered(body: Node2D) -> void:
+	if body.has_method("take_damage"):
+		body.take_damage()
 	GameManager.tile_destroyed.emit(tile_coordinate)
 	queue_free()
 

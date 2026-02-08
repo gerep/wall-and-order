@@ -9,7 +9,7 @@ class_name Enemy
 @onready var move_timer: Timer = $MoveTimer
 @onready var cannon: Sprite2D = $Cannon
 
-@export var speed: float = 2.0
+@export var speed: float = 30.0
 @export var wall_type: WallType = WallType.BRICK
 
 const BRICK_WALL: Vector2i = Vector2i(1, 0)
@@ -40,11 +40,14 @@ var tilemap_layer: TileMapLayer
 var target: Vector2
 var can_shoot: bool = true
 var can_move: bool = true
-var life: int = 1:
-	set(value):
-		life -= value
-		if life <= 0:
-			GameManager.enemy_died.emit()
+var life: int = 1
+
+
+func take_damage(amount: int = 1) -> void:
+	life -= amount
+	if life <= 0:
+		GameManager.enemy_died.emit()
+		queue_free()
 
 
 func _ready() -> void:

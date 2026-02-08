@@ -1,6 +1,5 @@
 extends Node2D
 
-@onready var enemy_spawn_timer: Timer = $EnemySpawnTimer
 @onready var ground_layer: TileMapLayer = $GroundLayer
 @onready var eagle: Area2D = $Eagle
 
@@ -10,13 +9,22 @@ const TOWER_SCENE = preload("uid://ckod6a185q6fh")
 const enemies: Array = [preload("uid://drgu2o61e8iki"), preload("uid://cjxa2ahc3d6py")]
 
 var screen_width: float
+var waves: int = 5
+var current_wave: int = 1:
+	set(value):
+		if current_wave > waves:
+			GameManager.game_ended.emit()
+
+var number_of_tanks: int = current_wave + 2
 
 
 func _ready() -> void:
+	GameManager.enemy_died.connect(_on_enemy_died)
+
 	var viewport = get_viewport_rect()
 	screen_width = viewport.size.x
-	enemy_spawn_timer.timeout.connect(_spawn_enemy)
-	_spawn_enemy()
+
+	_spawn_enemy(number_of_tanks)
 	_place_towers(3)
 
 	GameManager.tile_destroyed.connect(_on_tile_destroyed)
@@ -27,13 +35,14 @@ func _on_tile_destroyed(pos: Vector2i) -> void:
 	ground_layer.set_cell(pos, 1, WALKABLE_TILE)
 
 
-func _spawn_enemy() -> void:
-	var spawn_position: float = randf_range(10.0, screen_width - 10)
-	var enemy = enemies.pick_random().instantiate()
-	enemy.target = eagle.position
-	enemy.tilemap_layer = ground_layer
-	add_child(enemy)
-	enemy.position = Vector2(spawn_position, -50.0)
+func _spawn_enemy(count: int) -> void:
+	for c in count:
+		var spawn_position: float = randf_range(10.0, screen_width - 10)
+		var enemy = enemies.pick_random().instantiate()
+		enemy.target = eagle.position
+		enemy.tilemap_layer = ground_layer
+		add_child(enemy)
+		enemy.position = Vector2(spawn_position, -50.0)
 
 
 func _place_towers(count: int, min_distance: float = 150.0) -> void:
@@ -61,3 +70,10 @@ func _place_towers(count: int, min_distance: float = 150.0) -> void:
 
 func _on_game_ended() -> void:
 	GameManager.go_to_gameover_menu()
+
+
+func _on_enemy_died() -> void:
+	number_of_tanks -= 1
+	if number_of_tanks <= 0:
+		current_wave += 1
+		print("round ended")

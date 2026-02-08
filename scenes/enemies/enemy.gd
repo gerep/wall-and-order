@@ -40,6 +40,11 @@ var tilemap_layer: TileMapLayer
 var target: Vector2
 var can_shoot: bool = true
 var can_move: bool = true
+var life: int = 1:
+	set(value):
+		life -= value
+		if life <= 0:
+			GameManager.enemy_died.emit()
 
 
 func _ready() -> void:

@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://ce2yywdbrmmiv"]
 
 [ext_resource type="Script" uid="uid://p3i3ifavv3m8" path="res://scenes/towers/bullet/tower_bullet.gd" id="1_ns2b0"]
-[ext_resource type="Texture2D" uid="uid://cdehvy2bjtwke" path="res://assets/Bullets/bulletYellowSilver_outline.png" id="2_acko5"]
+[ext_resource type="Texture2D" uid="uid://c6t7kt2k13hxp" path="res://assets/towerbullet.png" id="2_ns2b0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b52me"]
 radius = 8.0
+height = 18.0
 
 [node name="TowerBullet" type="Area2D" unique_id=1513410200]
 collision_layer = 4
@@ -12,7 +13,7 @@ collision_mask = 4
 script = ExtResource("1_ns2b0")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1082420877]
-texture = ExtResource("2_acko5")
+texture = ExtResource("2_ns2b0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1363467289]
 rotation = 1.5707964

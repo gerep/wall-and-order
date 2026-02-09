@@ -1,10 +1,15 @@
 [gd_scene format=3 uid="uid://cjxa2ahc3d6py"]
 
 [ext_resource type="PackedScene" uid="uid://cggs4ha5boidx" path="res://scenes/enemies/enemy.tscn" id="1_w5dt5"]
-[ext_resource type="Texture2D" uid="uid://d0utljaj74wjd" path="res://assets/Tanks/tankBeige_outline.png" id="2_khdt3"]
+[ext_resource type="Texture2D" uid="uid://d1njj240bhb2d" path="res://assets/stonetank.png" id="2_khdt3"]
+[ext_resource type="Texture2D" uid="uid://drptaegvmlfi1" path="res://assets/stonecannon.png" id="3_q1l6u"]
 
 [node name="StoneEnemy" unique_id=1028931331 instance=ExtResource("1_w5dt5")]
 wall_type = 1
 
 [node name="Sprite2D" parent="." index="0" unique_id=428788154]
 texture = ExtResource("2_khdt3")
+
+[node name="Cannon" parent="." index="6" unique_id=257077008]
+texture = ExtResource("3_q1l6u")
+offset = Vector2(30, 0)

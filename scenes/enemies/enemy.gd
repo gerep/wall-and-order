@@ -12,11 +12,11 @@ class_name Enemy
 @export var speed: float = 30.0
 @export var wall_type: WallType = WallType.BRICK
 
-const BRICK_WALL: Vector2i = Vector2i(1, 0)
-const STONE_WALL: Vector2i = Vector2i(2, 0)
+const BRICK_WALL: Vector2i = Vector2i(3, 0)
+const STONE_WALL: Vector2i = Vector2i(3, 1)
 const BULLET_SCENE: PackedScene = preload("uid://pxhsie8ss6aa")
-const STONE_BULLET_TEXTURE: Texture2D = preload("uid://bngspxlsejr8b")
-const BRICK_BULLET_TEXTURE: Texture2D = preload("uid://rcxavrj58p67")
+const STONE_BULLET_TEXTURE: Texture2D = preload("uid://dqs536ircbvif")
+const BRICK_BULLET_TEXTURE: Texture2D = preload("uid://dtowk4p6o1vwl")
 
 enum WallType { BRICK, STONE }
 
@@ -90,7 +90,7 @@ func _physics_process(delta: float) -> void:
 	var target_position: Vector2 = navigation_agent_2d.get_next_path_position()
 	var direction = target_position - position
 
-	var target_rotation = direction.angle() + PI / 2
+	var target_rotation = direction.angle()
 
 	var rotation_value = lerp_angle(sprite_2d.rotation, target_rotation, 10 * delta)
 	sprite_2d.rotation = rotation_value

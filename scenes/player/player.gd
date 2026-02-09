@@ -1,10 +1,12 @@
 extends CharacterBody2D
 class_name Player
 
-const SPRITE_SIZE:int = 64
+const SPRITE_SIZE: int = 64
 
-const BRICK_WALL: Vector2i = Vector2i(1, 0)
-const STONE_WALL: Vector2i = Vector2i(2, 0)
+const BRICK_WALL: Vector2i = Vector2i(3, 0)
+const STONE_WALL: Vector2i = Vector2i(3, 1)
+const BRICK_WALL_ASSET: Texture2D = preload("uid://6x208hcnf2s5")
+const STONE_WALL_ASSET: Texture2D = preload("uid://birqxa5n8j47o")
 
 const NUM_PLACEMENTS_BEFORE_STONE: int = 4
 
@@ -22,9 +24,14 @@ var last_direction: Vector2
 var placement_count: int = -1
 var wall_sequence: Array = [BRICK_WALL, BRICK_WALL, STONE_WALL]
 
+var wall_textures: Dictionary = {
+	BRICK_WALL: BRICK_WALL_ASSET,
+	STONE_WALL: STONE_WALL_ASSET,
+}
+
 
 func _ready() -> void:
-	next_wall.frame_coords = wall_sequence[0]
+	next_wall.texture = BRICK_WALL_ASSET
 
 
 func _physics_process(delta: float) -> void:
@@ -39,10 +46,10 @@ func _input(event: InputEvent) -> void:
 		placement_count = wrapi(placement_count + 1, 0, wall_sequence.size())
 		var current_wall: Vector2i = wall_sequence[placement_count]
 		var next_index = wrapi(placement_count + 1, 0, wall_sequence.size())
-		next_wall.frame_coords = wall_sequence[next_index]
+		next_wall.texture = wall_textures[wall_sequence[next_index]]
 
 		# Grab the cell behind the player based on the last direction the player is facing.
-		var cell_position = position - (last_direction*SPRITE_SIZE)
+		var cell_position = position - (last_direction * SPRITE_SIZE)
 		var map_coord = tilemap_layer.local_to_map(cell_position)
 
 		# If the tilemap cell is already with a wall, ignore the placement.
@@ -59,7 +66,7 @@ func _handle_movement(delta: float) -> void:
 	if input_direction != Vector2.ZERO:
 		last_direction = input_direction
 		velocity = velocity.move_toward(input_direction * target_speed, acceleration * delta)
-		var target_rotation = input_direction.angle() + PI / 2
+		var target_rotation = input_direction.angle()
 		sprite_2d.rotation = lerp_angle(sprite_2d.rotation, target_rotation, rotation_speed * delta)
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)

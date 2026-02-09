@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bg402yve2oxks"]
 
-[ext_resource type="Texture2D" uid="uid://bjjmt6yhnhhl0" path="res://assets/Environment/treeLarge.png" id="1_3s5rv"]
+[ext_resource type="Texture2D" uid="uid://bpp6gdqme1d5y" path="res://assets/eagle.png" id="1_3s5rv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rfma5"]
 radius = 60.033325

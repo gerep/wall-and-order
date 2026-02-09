@@ -31,7 +31,6 @@ func _ready() -> void:
 
 
 func _update_number_of_tanks() -> void:
-	print("current wave:", current_wave)
 	number_of_tanks = current_wave + 2
 
 

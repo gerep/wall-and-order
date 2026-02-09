@@ -61,7 +61,11 @@ func _physics_process(delta: float) -> void:
 		return
 
 	if navigation_agent_2d.is_navigation_finished():
-		GameManager.game_ended.emit()
+		if position.distance_to(target) < navigation_agent_2d.target_desired_distance:
+			GameManager.game_ended.emit()
+		else:
+			await get_tree().create_timer(0.5).timeout
+			navigation_agent_2d.target_position = target
 		return
 
 	if ray_cast_2d.is_colliding():

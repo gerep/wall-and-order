@@ -1,6 +1,21 @@
 [gd_scene format=3 uid="uid://shib50xm7qie"]
 
 [ext_resource type="Script" uid="uid://dyfmgstcqjlwf" path="res://scenes/ui/gameover.gd" id="1_xg0lb"]
+[ext_resource type="Theme" uid="uid://1xqye73xxq0f" path="res://theme.tres" id="2_sxuf3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_valnw"]
+bg_color = Color(0.3019608, 0.4627451, 0.047058824, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxuf3"]
+bg_color = Color(0.80784315, 0.36862746, 0.3254902, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
 
 [node name="Gameover" type="CanvasLayer" unique_id=61900772]
 script = ExtResource("1_xg0lb")
@@ -25,9 +40,14 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="Control/PanelContainer/VBoxContainer" unique_id=533122104]
 layout_mode = 2
+theme = ExtResource("2_sxuf3")
+theme_override_colors/font_outline_color = Color(0.80784315, 0.36862746, 0.3254902, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 40
 text = "GAME OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -35,9 +55,15 @@ vertical_alignment = 1
 [node name="TryAgainButton" type="Button" parent="Control/PanelContainer/VBoxContainer" unique_id=1158298571]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_sxuf3")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/hover = SubResource("StyleBoxFlat_valnw")
 text = "TRY AGAIN"
 
 [node name="BackToMenu" type="Button" parent="Control/PanelContainer/VBoxContainer" unique_id=390628901]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_sxuf3")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/hover = SubResource("StyleBoxFlat_sxuf3")
 text = "BACK TO MENU"

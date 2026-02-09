@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://30pdvociwc8t"]
 
 [ext_resource type="Script" uid="uid://b2yatjos5oy2p" path="res://scenes/main/main.gd" id="1_hyk8p"]
+[ext_resource type="Theme" uid="uid://1xqye73xxq0f" path="res://theme.tres" id="2_iuonh"]
 
 [node name="Main" type="Node2D" unique_id=100478868]
 script = ExtResource("1_hyk8p")
@@ -25,12 +26,19 @@ grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/CenterContainer" unique_id=600527775]
 layout_mode = 2
+theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="CanvasLayer/Control/CenterContainer/VBoxContainer" unique_id=1655559357]
 layout_mode = 2
+theme = ExtResource("2_iuonh")
+theme_override_colors/font_outline_color = Color(0.3019608, 0.4627451, 0.047058824, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 40
 text = "WALL & ORDER"
 
 [node name="PlayButton" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer" unique_id=445286266]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_iuonh")
+theme_override_font_sizes/font_size = 34
 text = "Play"

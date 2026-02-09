@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="WallAndOrder"
-run/main_scene="uid://c1rtj12etmayj"
+run/main_scene="uid://30pdvociwc8t"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

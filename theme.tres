@@ -1,0 +1,23 @@
+[gd_resource type="Theme" format=3 uid="uid://1xqye73xxq0f"]
+
+[ext_resource type="FontFile" uid="uid://wkrck4mrifqs" path="res://assets/font/Press_Start_2P/PressStart2P-Regular.ttf" id="1_e1x85"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wvktn"]
+bg_color = Color(0.11764706, 0.654902, 0.88235295, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e1x85"]
+bg_color = Color(0.6156863, 0.6156863, 0.6156863, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[resource]
+Button/fonts/font = ExtResource("1_e1x85")
+Button/styles/hover = SubResource("StyleBoxFlat_wvktn")
+Button/styles/normal = SubResource("StyleBoxFlat_e1x85")
+Label/fonts/font = ExtResource("1_e1x85")

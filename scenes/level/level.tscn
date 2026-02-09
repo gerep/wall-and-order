@@ -31,6 +31,12 @@ custom_data_layer_0/name = "wall_type"
 custom_data_layer_0/type = 4
 sources/1 = SubResource("TileSetAtlasSource_i166f")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qkmgm"]
+size = Vector2(17, 976.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hnne4"]
+size = Vector2(1188, 20)
+
 [node name="Level" type="Node2D" unique_id=1475274271]
 script = ExtResource("1_i166f")
 
@@ -48,3 +54,18 @@ one_shot = true
 
 [node name="Eagle" parent="." unique_id=1686697668 instance=ExtResource("4_hnne4")]
 position = Vector2(795, 561)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=750138889]
+position = Vector2(-8, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1120232401]
+position = Vector2(-1, 171.875)
+shape = SubResource("RectangleShape2D_qkmgm")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1282834874]
+position = Vector2(1169, 148.75)
+shape = SubResource("RectangleShape2D_qkmgm")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1932952880]
+position = Vector2(584, 650)
+shape = SubResource("RectangleShape2D_hnne4")

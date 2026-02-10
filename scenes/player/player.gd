@@ -21,11 +21,13 @@ const NUM_PLACEMENTS_BEFORE_STONE: int = 4
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var next_wall: Sprite2D = $NextWall
+@onready var placement_timer: Timer = $PlacementTimer
 
 var input_direction: Vector2
 var last_direction: Vector2
 var placement_count: int = -1
 var wall_sequence: Array = [BRICK_WALL, BRICK_WALL, STONE_WALL]
+var can_place: bool = true
 
 var wall_textures: Dictionary = {
 	BRICK_WALL: BRICK_WALL_ASSET,
@@ -39,6 +41,7 @@ var ground_tiles: Array[Vector2i] = [
 
 func _ready() -> void:
 	next_wall.texture = BRICK_WALL_ASSET
+	placement_timer.timeout.connect(_on_placement_timer_timeout)
 
 
 func _physics_process(delta: float) -> void:
@@ -49,7 +52,10 @@ func _physics_process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed(&"place"):
+	if event.is_action_pressed(&"place") and can_place:
+		can_place = false
+		placement_timer.start()
+
 		placement_count = wrapi(placement_count + 1, 0, wall_sequence.size())
 		var current_wall: Vector2i = wall_sequence[placement_count]
 		var next_index = wrapi(placement_count + 1, 0, wall_sequence.size())
@@ -79,3 +85,7 @@ func _handle_movement(delta: float) -> void:
 		sprite_2d.rotation = lerp_angle(sprite_2d.rotation, target_rotation, rotation_speed * delta)
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
+
+
+func _on_placement_timer_timeout() -> void:
+	can_place = true

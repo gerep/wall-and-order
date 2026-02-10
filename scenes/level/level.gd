@@ -26,12 +26,27 @@ func _ready() -> void:
 	var viewport = get_viewport_rect()
 	screen_width = viewport.size.x
 
+	_randomize_eagle_position()
 	_update_number_of_tanks()
 	_spawn_enemy(number_of_tanks)
-	_place_towers(1)
+	_place_towers(2)
 
 	GameManager.tile_destroyed.connect(_on_tile_destroyed)
 	GameManager.game_ended.connect(_on_game_ended)
+
+
+func _randomize_eagle_position() -> void:
+	var cells = ground_layer.get_used_cells()
+	var bottom_cells: Array[Vector2i] = []
+	var max_y: int = cells[0].y
+	for cell in cells:
+		if cell.y > max_y:
+			max_y = cell.y
+	for cell in cells:
+		if cell.y == max_y:
+			bottom_cells.append(cell)
+	var chosen_cell = bottom_cells.pick_random()
+	eagle.position = ground_layer.map_to_local(chosen_cell)
 
 
 func _update_number_of_tanks() -> void:
@@ -53,7 +68,7 @@ func _spawn_enemy(count: int) -> void:
 		enemy.position = Vector2(spawn_position, -50.0)
 
 
-func _place_towers(count: int, min_distance: float = 150.0) -> void:
+func _place_towers(count: int, min_distance: float = 150.0, eagle_distance: float = 200.0) -> void:
 	var cells = ground_layer.get_used_cells()
 	cells.shuffle()
 	var placed_positions: Array[Vector2] = []
@@ -62,6 +77,10 @@ func _place_towers(count: int, min_distance: float = 150.0) -> void:
 			break
 
 		var pos = ground_layer.map_to_local(cell)
+
+		if pos.y >= eagle.position.y or pos.distance_to(eagle.position) < eagle_distance:
+			continue
+
 		var too_close = false
 		for placed in placed_positions:
 			if pos.distance_to(placed) < min_distance:

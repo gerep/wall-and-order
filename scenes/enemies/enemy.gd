@@ -57,7 +57,7 @@ var life: int = 1
 func take_damage(amount: int = 1) -> void:
 	life -= amount
 	if life <= 0:
-		AudioManager.play(TANK_EXPLOSION_SOUND)
+		AudioManager.play(TANK_EXPLOSION_SOUND, -10.0)
 		GameManager.enemy_died.emit()
 		queue_free()
 

@@ -8,6 +8,9 @@ const STONE_WALL: Vector2i = Vector2i(3, 1)
 const BRICK_WALL_ASSET: Texture2D = preload("uid://6x208hcnf2s5")
 const STONE_WALL_ASSET: Texture2D = preload("uid://birqxa5n8j47o")
 
+const PLACING_BLOCK_SOUND: AudioStream = preload("uid://d3joi56g2weqc")
+const INVALID_PLACING_BLOCK_SOUND: AudioStream = preload("uid://djjcufbmsnm8a")
+
 const NUM_PLACEMENTS_BEFORE_STONE: int = 4
 
 @export var speed: float = 400.0
@@ -28,6 +31,10 @@ var wall_textures: Dictionary = {
 	BRICK_WALL: BRICK_WALL_ASSET,
 	STONE_WALL: STONE_WALL_ASSET,
 }
+
+var ground_tiles: Array[Vector2i] = [
+	Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(0, 2), Vector2i(0, 3), Vector2i(1, 3)
+]
 
 
 func _ready() -> void:
@@ -53,11 +60,13 @@ func _input(event: InputEvent) -> void:
 		var map_coord = tilemap_layer.local_to_map(cell_position)
 
 		# If the tilemap cell is already with a wall, ignore the placement.
-		if tilemap_layer.get_cell_atlas_coords(map_coord) != Vector2i.ZERO:
+		if tilemap_layer.get_cell_atlas_coords(map_coord) not in ground_tiles:
 			placement_count -= 1
+			AudioManager.play(INVALID_PLACING_BLOCK_SOUND)
 			return
 
 		tilemap_layer.set_cell(map_coord, 1, current_wall)
+		AudioManager.play(PLACING_BLOCK_SOUND)
 
 
 func _handle_movement(delta: float) -> void:

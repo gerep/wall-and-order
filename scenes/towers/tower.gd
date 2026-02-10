@@ -20,7 +20,7 @@ func _shoot() -> void:
 	if targets.is_empty():
 		return
 
-	AudioManager.play(TOWER_SHOOTING_SOUND)
+	AudioManager.play(TOWER_SHOOTING_SOUND, -10.0)
 	var bullet_scene: TowerBullet = BULLET_SCENE.instantiate()
 	bullet_scene.target_position = targets[0].global_position
 	get_parent().call_deferred("add_child", bullet_scene)

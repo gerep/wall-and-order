@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 GameManager="*uid://c7il2ntpwjgh5"
 AudioManager="*uid://wtdbvejeayn3"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [input]
 
 ui_left={

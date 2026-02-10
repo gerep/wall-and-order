@@ -8,10 +8,13 @@ var tile_coordinate: Vector2i
 var speed: int = 300
 var texture: Texture2D
 
+@export var lifetime: float = 3.0
+
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	sprite.texture = texture
+	get_tree().create_timer(lifetime).timeout.connect(queue_free)
 
 
 func _on_body_entered(body: Node2D) -> void:

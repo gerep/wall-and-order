@@ -2,3 +2,5 @@
 .godot/
 /android/
 TODO.md
+export/
+export_presets.cfg

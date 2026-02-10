@@ -68,10 +68,11 @@ func _spawn_enemy(count: int) -> void:
 		enemy.position = Vector2(spawn_position, -50.0)
 
 
-func _place_towers(count: int, min_distance: float = 150.0, eagle_distance: float = 200.0) -> void:
+func _place_towers(count: int, min_distance: float = 150.0, eagle_distance: float = 200.0, center_margin: float = 150.0) -> void:
 	var cells = ground_layer.get_used_cells()
 	cells.shuffle()
 	var placed_positions: Array[Vector2] = []
+	var center_x = screen_width / 2.0
 	for cell in cells:
 		if placed_positions.size() >= count:
 			break
@@ -79,6 +80,9 @@ func _place_towers(count: int, min_distance: float = 150.0, eagle_distance: floa
 		var pos = ground_layer.map_to_local(cell)
 
 		if pos.y >= eagle.position.y or pos.distance_to(eagle.position) < eagle_distance:
+			continue
+
+		if absf(pos.x - center_x) < center_margin:
 			continue
 
 		var too_close = false

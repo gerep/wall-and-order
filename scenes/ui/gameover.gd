@@ -22,10 +22,6 @@ func _on_back_to_menu_pressed() -> void:
 	GameManager.go_to_main_menu()
 
 
-func _on_play_button_pressed() -> void:
-	GameManager.go_to_level()
-
-
 func _on_back_to_menu_mouse_entered() -> void:
 	back_to_menu.rotation = deg_to_rad([-2.0, 2.0].pick_random())
 

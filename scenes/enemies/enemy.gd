@@ -79,7 +79,6 @@ func _physics_process(delta: float) -> void:
 		if position.distance_to(target) < navigation_agent_2d.target_desired_distance:
 			GameManager.game_ended.emit()
 		else:
-			await get_tree().create_timer(0.5).timeout
 			navigation_agent_2d.target_position = target
 		return
 
@@ -102,6 +101,7 @@ func _physics_process(delta: float) -> void:
 
 					get_parent().add_child(bullet_scene)
 					AudioManager.play(TANK_SHOOTING_SOUND)
+					return
 
 	var target_position: Vector2 = navigation_agent_2d.get_next_path_position()
 	var direction = target_position - position

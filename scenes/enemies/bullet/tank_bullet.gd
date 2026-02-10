@@ -7,6 +7,7 @@ var target_position: Vector2
 var tile_coordinate: Vector2i
 var speed: int = 300
 var texture: Texture2D
+var direction: Vector2
 
 @export var lifetime: float = 3.0
 
@@ -14,6 +15,7 @@ var texture: Texture2D
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	sprite.texture = texture
+	direction = (target_position - position).normalized()
 	get_tree().create_timer(lifetime).timeout.connect(queue_free)
 
 
@@ -25,5 +27,4 @@ func _on_body_entered(body: Node2D) -> void:
 
 
 func _process(delta: float) -> void:
-	var direction = (target_position - position).normalized()
 	position += direction * speed * delta

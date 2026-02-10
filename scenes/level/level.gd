@@ -68,7 +68,12 @@ func _spawn_enemy(count: int) -> void:
 		enemy.position = Vector2(spawn_position, -50.0)
 
 
-func _place_towers(count: int, min_distance: float = 150.0, eagle_distance: float = 200.0, center_margin: float = 150.0) -> void:
+func _place_towers(
+	count: int,
+	min_distance: float = 150.0,
+	eagle_distance: float = 200.0,
+	center_margin: float = 150.0
+) -> void:
 	var cells = ground_layer.get_used_cells()
 	cells.shuffle()
 	var placed_positions: Array[Vector2] = []
@@ -115,7 +120,6 @@ func _on_enemy_died() -> void:
 	if number_of_tanks <= 0:
 		current_wave += 1
 		_update_number_of_tanks()
-		print(number_of_tanks)
 		round_start_timer.start()
 
 

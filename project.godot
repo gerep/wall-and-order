@@ -67,6 +67,7 @@ place={
 2d_physics/layer_3="ENEMY"
 2d_physics/layer_4="STONE_WALL"
 2d_physics/layer_5="BRICK_WALL"
+2d_physics/layer_6="TOWER"
 
 [physics]
 

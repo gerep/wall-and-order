@@ -6,6 +6,8 @@ extends Node2D
 
 const WALKABLE_TILE: Vector2i = Vector2i(0, 0)
 const TOWER_SCENE = preload("uid://ckod6a185q6fh")
+const GAME_OVER_SOUND: AudioStream = preload("uid://ck0r18gxjpbcy")
+const NEW_WAVE_SOUND: AudioStream = preload("uid://1hq430l5skq3")
 const enemies: Array = [preload("uid://drgu2o61e8iki"), preload("uid://cjxa2ahc3d6py")]
 
 var screen_width: float
@@ -13,6 +15,8 @@ var waves: int = 5
 var current_wave: int = 1
 
 var number_of_tanks: int
+
+var game_ended_received: bool
 
 
 func _ready() -> void:
@@ -24,7 +28,7 @@ func _ready() -> void:
 
 	_update_number_of_tanks()
 	_spawn_enemy(number_of_tanks)
-	_place_towers(2)
+	_place_towers(1)
 
 	GameManager.tile_destroyed.connect(_on_tile_destroyed)
 	GameManager.game_ended.connect(_on_game_ended)
@@ -73,6 +77,13 @@ func _place_towers(count: int, min_distance: float = 150.0) -> void:
 
 
 func _on_game_ended() -> void:
+	if game_ended_received:
+		return
+
+	game_ended_received = true
+	AudioManager.play(GAME_OVER_SOUND)
+	await get_tree().create_timer(2.30).timeout
+
 	GameManager.go_to_gameover_menu()
 
 
@@ -86,5 +97,6 @@ func _on_enemy_died() -> void:
 
 
 func _on_round_start_timer_timeout() -> void:
-	print("round timer timeout")
+	AudioManager.play(NEW_WAVE_SOUND)
+	await get_tree().create_timer(2.0).timeout
 	_spawn_enemy(number_of_tanks)

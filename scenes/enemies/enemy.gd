@@ -84,6 +84,7 @@ func _physics_process(delta: float) -> void:
 		return
 
 	if ray_cast_2d.is_colliding():
+		print(ray_cast_2d.get_collider())
 		if ray_cast_2d.get_collider() is TileMapLayer:
 			var map_coord = tilemap_layer.local_to_map(ray_cast_2d.get_collision_point())
 			if tilemap_layer.get_cell_atlas_coords(map_coord) == target_wall:

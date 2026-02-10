@@ -18,6 +18,7 @@ const NUM_PLACEMENTS_BEFORE_STONE: int = 4
 @export var friction: float = 2000.0
 @export var rotation_speed: float = 10.0
 @export var tilemap_layer: TileMapLayer
+@export var wall_decay_time: float = 20.0
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var next_wall: Sprite2D = $NextWall
@@ -38,10 +39,13 @@ var ground_tiles: Array[Vector2i] = [
 	Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(0, 2), Vector2i(0, 3), Vector2i(1, 3)
 ]
 
+var wall_timers: Dictionary = {}  # Vector2i -> float (time remaining)
+
 
 func _ready() -> void:
 	next_wall.texture = BRICK_WALL_ASSET
 	placement_timer.timeout.connect(_on_placement_timer_timeout)
+	GameManager.tile_destroyed.connect(_on_tile_destroyed)
 
 
 func _physics_process(delta: float) -> void:
@@ -72,7 +76,19 @@ func _input(event: InputEvent) -> void:
 			return
 
 		tilemap_layer.set_cell(map_coord, 1, current_wall)
+		wall_timers[map_coord] = wall_decay_time
 		AudioManager.play(PLACING_BLOCK_SOUND)
+
+
+func _process(delta: float) -> void:
+	var expired: Array[Vector2i] = []
+	for coord: Vector2i in wall_timers:
+		wall_timers[coord] -= delta
+		if wall_timers[coord] <= 0.0:
+			expired.append(coord)
+	for coord in expired:
+		wall_timers.erase(coord)
+		GameManager.tile_destroyed.emit(coord)
 
 
 func _handle_movement(delta: float) -> void:
@@ -89,3 +105,7 @@ func _handle_movement(delta: float) -> void:
 
 func _on_placement_timer_timeout() -> void:
 	can_place = true
+
+
+func _on_tile_destroyed(pos: Vector2i) -> void:
+	wall_timers.erase(pos)

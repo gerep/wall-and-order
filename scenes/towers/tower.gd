@@ -5,6 +5,7 @@ class_name Tower
 @onready var shooting_timer: Timer = $ShootingTimer
 
 const BULLET_SCENE = preload("uid://ce2yywdbrmmiv")
+const TOWER_SHOOTING_SOUND: AudioStream = preload("uid://luobllha83oh")
 
 var targets: Array[Node2D]
 
@@ -19,6 +20,7 @@ func _shoot() -> void:
 	if targets.is_empty():
 		return
 
+	AudioManager.play(TOWER_SHOOTING_SOUND)
 	var bullet_scene: TowerBullet = BULLET_SCENE.instantiate()
 	bullet_scene.target_position = targets[0].global_position
 	get_parent().call_deferred("add_child", bullet_scene)

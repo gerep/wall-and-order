@@ -30,4 +30,5 @@ position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_vfpy0")
 
 [node name="ShootingTimer" type="Timer" parent="." unique_id=1914182226]
+wait_time = 2.5
 autostart = true
